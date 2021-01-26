@@ -1,62 +1,49 @@
 {
   "name": "react-css-transition-replace",
   "version": "4.0.2",
-  "private": true,
-  "authors": "Marnus Weststrate <marnusw@gmail.com>",
-  "license": "MIT",
+  "description": "A React component to animate replacing one element with another.",
+  "main": "lib/ReactCSSTransitionReplace.js",
+  "module": "es/ReactCSSTransitionReplace.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marnusw/react-css-transition-replace.git"
+  },
   "scripts": {
-    "start": "cd packages/demo && npm run start",
-    "test": "echo \"No test implemented\" && exit 0"
+    "test": "echo \"No test implemented\" && exit 0",
+    "prebuild": "rimraf lib",
+    "build:es": "babel src --out-dir ./es",
+    "build:cjs": "cross-env MODULES=cjs babel src --out-dir ./lib",
+    "build": "yarn build:es && yarn build:cjs",
+    "watch": "babel src --out-dir ./es --watch",
+    "prepublish": "yarn build && cp ../../*.md packages/react-css-transition-replace",
+    "postpublish": "rm *.md"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "dependencies": {
+    "dom-helpers": "^3.3.1",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.1.0",
-    "eslint-config-react-app": "^5.0.1",
-    "eslint-plugin-flowtype": "^4.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
-    "prettier": "^1.18.2"
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "cross-env": "^6.0.3",
+    "rimraf": "^3.0.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "author": "Marnus Weststrate <marnusw@gmail.com>",
+  "keywords": [
+    "react",
+    "transition",
+    "replace"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marnusw/react-css-transition-replace/issues"
   },
-  "lint-staged": {
-    "*.{js,mjs}": [
-      "eslint"
-    ],
-    "*.{js,mjs,json,scss,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "no-console": "warn",
-      "no-duplicate-imports": "error",
-      "no-unused-vars": "error",
-      "yoda": [
-        "error",
-        "never",
-        {
-          "exceptRange": true
-        }
-      ]
-    }
-  },
-  "prettier": {
-    "printWidth": 100,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all"
-  }
+  "homepage": "https://github.com/marnusw/react-css-transition-replace"
 }
